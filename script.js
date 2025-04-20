@@ -114,8 +114,6 @@ function populate(value)
             arr1.push(value)
             temp1 += value;
             disp.innerHTML = temp1;
-            
-            console.log(arr1)
             return;
         }
     }
@@ -128,12 +126,11 @@ function populate(value)
         {
             disp.innerHTML += value;
         }
-        console.log('array2 is :', arr2)
         flag = 1;
         return;
     }
 
-    if((arr3[0] === undefined || ["1","2","3","."].includes(value) ) && 
+    if((arr3[0] === undefined || ["1","2","3",".","4","5","6","7","8","9","0"].includes(value) ) && 
     !["+","-","*","/"].includes(value) && arr2[0] !== undefined)
     {
         if ( arr3.includes(".") && value === ".")
@@ -145,13 +142,10 @@ function populate(value)
             arr3.push(value)
             temp3 += value
             disp.innerHTML = temp3;
-            console.log("array 3 is : ",arr3)
             return;
         }
     }
 }
-
-
 equalbutton.addEventListener("click",()=>
 {
     calculate();
@@ -172,27 +166,43 @@ function calculate()
     if ( str2 === "+")
     {
         result = parseFloat(str1) + parseFloat(str3)
-        console.log("Sum is : ", result)
         disp.innerHTML = result;    
+        firstarrayreset(result);
     }
 
     if ( str2 === "-")
     {
         result = parseFloat(str1) - parseFloat(str3)
         disp.innerHTML = result; 
+        firstarrayreset(result);
     }
 
     if ( str2 === "*")
     {
         result = parseFloat(str1) * parseFloat(str3)
-        disp.innerHTML = result; 
+        disp.innerHTML = result;
+        firstarrayreset(result);
     }
 
     if ( str2 === "/")
     {
         result = parseFloat(str1) / parseFloat(str3)
-        disp.innerHTML = result; 
+        disp.innerHTML = result;
+        firstarrayreset(result);
     }
+}
+
+function firstarrayreset(resetvalue)
+{
+    let splitstring = String(resetvalue).split("")
+    for ( let i = 0 ; i<splitstring.length ; i++)
+    {
+        arr1[i] = splitstring[i]
+    }
+    arr2[0] = undefined;
+    arr3 =[]
+    temp3 = ''
+    temp1 = String(resetvalue)
 }
 
 clearbutton.addEventListener("click", ()=>
@@ -203,7 +213,7 @@ clearbutton.addEventListener("click", ()=>
 function reset()
 {
     temp1 = ''
-    temp2 = ''
+    temp3 = ''
     arr1 = []
     arr2 = new Array(1)
     arr3 = []
