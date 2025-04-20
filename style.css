@@ -12,7 +12,7 @@ body
 #maindiv
 {
     display:flex;
-    background-color: aliceblue;
+    background-color: rgb(58, 50, 50);
     flex-direction : column;
     justify-content: center;
     align-items: center;
@@ -26,12 +26,16 @@ body
 #displaybar
 {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     flex-grow: 1;
     width : 100%;
     border-bottom:5px solid black;
+    font-size: 25px;
+    background-color: white;
+    
 }
+
 *
 {
     margin : 0px;
@@ -53,6 +57,7 @@ body
     height:80%;
     margin-top: 3px;
     margin-bottom: 5px;
+    
 }
 
 #bottomright,#bottomleft
@@ -61,15 +66,18 @@ body
     flex-direction: column;
     height : 100%;
     width : 100%;
-    padding:2px;
-    
 }   
 
 #bottomleft
 {
-    width : 1200px;
+    width : 300px;
+    flex-shrink: 0;
 }
 
+#bottomright
+{
+    padding-right: 1px;
+}
 
 #firstrow, #secondrow, #thirdrow, #fourthrow, #fifthrow
 {
@@ -114,4 +122,14 @@ body
 {
     background-color: rgb(203, 192, 192);
     font-size: 25px;
+}
+
+#delete
+{
+    background-color: rgb(73, 73, 200);
+}
+
+#decimal
+{
+    font-size: 30px;
 }
