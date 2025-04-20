@@ -16,59 +16,219 @@ let seven = document.getElementById("seven");
 let eight = document.getElementById("eight");
 let nine = document.getElementById("nine");
 let zero = document.getElementById("zero");
-
 let disp = document.getElementById("displaybar");
 
-arr = new Array(3);
 
 one.addEventListener("click",()=>
 {
     populate("1");
 })
-
 two.addEventListener("click",() =>
 {
     populate("2");
 })
+three.addEventListener("click", () =>
+{
+    populate("3");
+})
+
+four.addEventListener("click", () =>
+{
+    populate("4");
+})
+five.addEventListener("click",() =>
+{
+    populate("5");
+})
+
+six.addEventListener("click",() =>
+{
+    populate("6");
+})
+
+seven.addEventListener("click",() =>
+{
+    populate("7");
+})
+
+eight.addEventListener("click",() =>
+{
+    populate("8");
+})
+
+nine.addEventListener("click",() =>
+{
+    populate("9");
+})
+
+zero.addEventListener("click",() =>
+{
+    populate("0");
+})
+
 
 addbutton.addEventListener("click",()=>
 {
     populate("+")
 })
 
+subbutton.addEventListener("click",()=>
+    {
+        populate("-")
+})
+
+mulbutton.addEventListener("click",()=>
+    {
+        populate("*")
+})
+
+divbutton.addEventListener("click",()=>
+    {
+        populate("/")
+})
+
+decimalbutton.addEventListener("click", ()=>
+{
+    populate(".")
+})
+
+arr1 = []
+arr2 = new Array(1)
+arr3 = []
+flag = 0
+temp1 = '';
+temp3 = '';
+
+
 function populate(value)
 {
-    if (arr[0] === undefined)
+    if((arr1[0] === undefined || ["1","2","3",".","4","5","6","7","8","9","0"].includes(value) ) && 
+    !["+","-","*","/"].includes(value) && flag === 0)
     {
-        arr[0] = value
-        disp.innerHTML = value 
+        if ( arr1.includes(".") && value === ".")
+        {
+            return;
+        }
+        else
+        {
+            arr1.push(value)
+            temp1 += value;
+            disp.innerHTML = temp1;
+            
+            console.log(arr1)
+            return;
+        }
+    }
+
+    if (["+","-","*","/"].includes(value))
+    {
+        arr2[0] = value;
+        // ensuring same operator doesnt pop up twice in display bar: 
+        if ( !["+","-","*","/"].includes(disp.innerHTML.slice(-1)))
+        {
+            disp.innerHTML += value;
+        }
+        console.log('array2 is :', arr2)
+        flag = 1;
         return;
     }
 
-    else if ( arr[0] !== undefined && ["+", "-", "*", "/"].includes(value)
-    )
+    if((arr3[0] === undefined || ["1","2","3","."].includes(value) ) && 
+    !["+","-","*","/"].includes(value) && arr2[0] !== undefined)
     {
-        arr[1] = value
-        console.log(arr)
-        disp.innerHTML = arr[0] + arr[1]
-    }
-
-    else if ( arr[1] !== undefined && ["1","2","3"].includes(value))
-    {
-        arr[2] = value
-        console.log("one is:",arr[1])
-        disp.innerHTML = arr[0] + arr[1] + arr[2]
+        if ( arr3.includes(".") && value === ".")
+        {
+            return;
+        }
+        else
+        {
+            arr3.push(value)
+            temp3 += value
+            disp.innerHTML = temp3;
+            console.log("array 3 is : ",arr3)
+            return;
+        }
     }
 }
 
-function populateoperator(oper)
+
+equalbutton.addEventListener("click",()=>
 {
+    calculate();
+})
+
+function calculate()
+{
+    str1 = arr1.join("")
     
+    str3 = ""
+    for ( let j in arr3 )
+    {
+        str3 += arr3[j]
+    }
+
+    str2 = arr2[0]
+    let result = 0
+    if ( str2 === "+")
+    {
+        result = parseFloat(str1) + parseFloat(str3)
+        console.log("Sum is : ", result)
+        disp.innerHTML = result;    
+    }
+
+    if ( str2 === "-")
+    {
+        result = parseFloat(str1) - parseFloat(str3)
+        disp.innerHTML = result; 
+    }
+
+    if ( str2 === "*")
+    {
+        result = parseFloat(str1) * parseFloat(str3)
+        disp.innerHTML = result; 
+    }
+
+    if ( str2 === "/")
+    {
+        result = parseFloat(str1) / parseFloat(str3)
+        disp.innerHTML = result; 
+    }
 }
 
+clearbutton.addEventListener("click", ()=>
+{
+    reset();
+})
 
+function reset()
+{
+    temp1 = ''
+    temp2 = ''
+    arr1 = []
+    arr2 = new Array(1)
+    arr3 = []
+    disp.innerHTML = "0"
+    flag = 0
+}
 
+delbutton.addEventListener("click",()=>
+{
+    backspace();
+})
 
-
-
-
+function backspace()
+{
+    if ( flag === 1) //then change can only be made to 2nd number
+    {
+        temp3 = temp3.slice(0,-1)
+        arr3.pop();
+        disp.innerHTML = temp3;
+    }
+    else if ( flag === 0)
+    {
+        temp1 = temp1.slice(0,-1)
+        arr1.pop()
+        disp.innerHTML = temp1;
+        console.log(temp1,"is temp1.")
+    }
+}
