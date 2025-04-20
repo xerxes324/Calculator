@@ -1,24 +1,36 @@
+html,body
+{
+    height:100%;
+    margin :0   
+}
+body
+{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
 #maindiv
 {
-    margin-left: 750px;
-    margin-top:400px;    
     display:flex;
-    background-color: red;
+    background-color: aliceblue;
     flex-direction : column;
     justify-content: center;
     align-items: center;
-    height:200px;
-    width : 500px;
-    align-self: center;  
-    border : 5px solid black;
+    height:500px;
+    width : 350px;  
+    border : 3px solid black;
+    
 }   
 
 
 #displaybar
 {
     display: flex;
-    
-
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    width : 100%;
+    border-bottom:5px solid black;
 }
 *
 {
@@ -26,11 +38,7 @@
     padding:0px;
 }
 
-#display
-{
-    border:2px solid black;
-    background-color: aliceblue;
-}
+
 
 #numericals
 {
@@ -38,38 +46,72 @@
     flex-direction: column;
 }
 
+#bottomhalf
+{
+    display:flex;
+    width : 100%;
+    height:80%;
+    margin-top: 3px;
+    margin-bottom: 5px;
+}
+
 #bottomright,#bottomleft
 {
     display:flex;
     flex-direction: column;
+    height : 100%;
+    width : 100%;
+    padding:2px;
+    
 }   
 
 #bottomleft
 {
-    display: flex;
-    
+    width : 1200px;
 }
+
+
 #firstrow, #secondrow, #thirdrow, #fourthrow, #fifthrow
 {
     display: flex;
+    flex-grow: 1;
+    margin:1px;
 }
 
-#one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #zero, #equal, #decimal
+#one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #zero, #equal, #decimal, #clear, #delete, #add
 {
-    height: 20px;
-    width : 20px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-grow:1;
-    justify-content: center
+    margin:1px;
+    border : 3px solid black;
+    font-size: 15px;
 }
 
 #divide, #multiply, #sub
 {
     display: flex;
     flex-grow:1;    
+    align-items: center;
+    justify-content: center;
+    margin : 1px;
+    border: 3px solid black;
 
 }
-#bottomhalf
+
+#clear
 {
-    display: flex;
+    background-color: rgb(202, 34, 34);
+}
+
+#equal
+{
+    background-color: greenyellow;
+}
+
+#add,#sub, #multiply, #divide
+{
+    background-color: rgb(203, 192, 192);
+    font-size: 25px;
 }
